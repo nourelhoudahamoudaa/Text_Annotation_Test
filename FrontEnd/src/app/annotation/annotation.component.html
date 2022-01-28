@@ -1,0 +1,33 @@
+<div class="c22">
+   <h2  [hidden]="addtxt"> Add text: </h2>
+
+   <div class="example-button-container" [hidden]="addtxt">
+        <mat-form-field  class="i">
+            <mat-label  class="i1"></mat-label>
+            <input matInput [(ngModel)]="document">
+        </mat-form-field>
+    
+        <button class="bttn" mat-stroked-button color="accent" (click)="addtext()">Add Text</button>
+    </div>
+
+    <h2  [hidden]="addlabel"> Add to list labels: </h2>
+    <div [hidden]="addlabel" class="example-button-container">
+        <mat-form-field  class="i">
+            <mat-label  class="i1"></mat-label>
+            <input matInput [(ngModel)]="onelabel">
+        </mat-form-field>
+       
+        <button class="bttn" mat-stroked-button color="accent" (click)="addlab()">Add</button>
+    </div>
+      
+    
+    <div class="c23" [hidden]="addlabel">
+        <button class="bttnlab" mat-stroked-button color="accent" (click)="labselected(lab.color,lab.label)"  *ngFor="let lab of list_labels" style="background-color:{{lab.color}}">{{lab.label}}</button>
+    </div>
+      
+        <textarea class="doc" [hidden]="addlabel" id="quote" cols="45" rows="10" (select)="select($event)" >
+            {{document}}
+        </textarea>
+    
+        <button  mat-stroked-button color="accent" (click)="addannot()">Save</button>    
+</div>

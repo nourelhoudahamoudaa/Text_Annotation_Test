@@ -20,5 +20,5 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^', include('AnnotationApp.urls'))
+    path('', include('AnnotationApp.urls'))
 ]
