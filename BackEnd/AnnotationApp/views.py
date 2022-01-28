@@ -17,8 +17,7 @@ def annotationApi(request,id=0):
 
     elif request.method=='POST':
         annotate_data=JSONParser().parse(request)
-        annotation_serializer = AnnotationSerializer(data=annotate_data)      
-        print("aaaaa annotate_data aaaaaaa", type(annotate_data))
+        annotation_serializer = AnnotationSerializer(data=annotate_data)     
         if annotation_serializer.is_valid():
             annotation_serializer.save()
             dic = dict(annotate_data)
@@ -28,11 +27,9 @@ def annotationApi(request,id=0):
             annotation = dic['Annotation'].split(" ++++ other ++++ ")
             for i in range(1,len(annotation)):
                 onelab = annotation[i].split(" ++++ : ++++ ")
-                print("aaaaa  onelabonelabonelabonelab  aaaaaaa", onelab)
                 start = text.find(onelab[1])
-                end = len(onelab[1])-1
-                point = {"start":start,"end":end,"text":onelab[1]}
-                label = {"label":[onelab[0]], "points":[point]}
+                end = start + len(onelab[1]) -1
+                label = {"start":start,"end":end, "label":[onelab[0]], "text":onelab[1]}
                 allpoint.append(label)
             
             result = {"document":text,"annotation":allpoint}

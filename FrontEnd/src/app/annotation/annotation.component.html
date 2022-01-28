@@ -28,6 +28,7 @@
         <textarea class="doc" [hidden]="addlabel" id="quote" cols="45" rows="10" (select)="select($event)" >
             {{document}}
         </textarea>
-    
-        <button  mat-stroked-button color="accent" (click)="addannot()">Save</button>    
+    <div [hidden]="save" >
+        <button   mat-stroked-button color="accent" (click)="addannot()">Save</button>    
+    </div>
 </div>

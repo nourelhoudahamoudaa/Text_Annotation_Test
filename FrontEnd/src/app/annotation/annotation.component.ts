@@ -18,10 +18,11 @@ export class AnnotationComponent implements OnInit {
   showtext: any = true;
   addtxt: any = false;
   addlabel: any = true;
+  save = true;
   selctedcolor: any= "";
   selctedlab: any= "";
   i = 0;
-  colors=["red", "green", "yellow", "blue", "pink"];
+  colors=["rebeccapurple", "rosybrown", "royalblue", "blue", "pink"];
 
   constructor(private service:SharedService, private router: Router) { }
 
@@ -29,14 +30,14 @@ export class AnnotationComponent implements OnInit {
   };
 
   addlab() {
-    if (this.onelabel != "" && !(this.list_labels.includes(this.onelabel))){
+    if (this.onelabel != "" && !(this.list_labels.includes(this.onelabel)) ){
       this.labels = {
         label: this.onelabel ,
         color: this.colors[this.i]
       }
       this.i = this.i + 1
       this.list_labels.push(this.labels); 
-      console.log("liiiist :  ", this.list_labels)
+      console.log(this.list_labels)
     }
   };
   addtext(){
@@ -49,15 +50,14 @@ export class AnnotationComponent implements OnInit {
     const start = event.target.selectionStart;
     const end = event.target.selectionEnd;
     this.annotation = this.annotation + " ++++ other ++++ " + this.selctedlab + " ++++ : ++++ " + event.target.value.substr(start, end - start)
-
-    console.log("some think hapened", start, "to", end - start);
-    console.log(event.target.value.substr(start, end - start))
+    this.save = false;
+    console.log(event.target.value.substr(start, end - start));
  }
  
  labselected(color:any, lab:any){
   this.selctedcolor = color
   this.selctedlab = lab
-  console.log("some think hapened", this.selctedcolor, "to", this.selctedlab);
+  console.log("Label selected", this.selctedlab, "with color = ", this.selctedcolor);
  }
  addannot(){
   this.val = {Document: this.document, Annotation: this.annotation};
